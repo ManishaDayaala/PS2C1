@@ -26,7 +26,7 @@ def set_random_seed(seed_value=42):
     tf.random.set_seed(seed_value)
 
 # Define the main folder path
-MAINFOLDER = r"D:\APPdata_PS2C1"
+MAINFOLDER = r"./APPdata_PS2C1"
 
 # Create other paths relative to the main folder
 training_file_path = os.path.join(MAINFOLDER, "Training", "Training_PS2C1.xlsx")  # FIXED TRAINING DATA
@@ -374,7 +374,7 @@ st.title("Breakdown Code Classification")
 
 if st.button("Check BD Classification"):
     with st.spinner("Checking breakdown..."):
-        train_ensemble_model(training_file_path, model_folder_path)  # Train the model
+        #train_ensemble_model(training_file_path, model_folder_path)  # Train the model
         result = predict_ensemble(test_file_path, model_folder_path)  # Predict breakdown
 
         # Store the result in session state
@@ -562,12 +562,12 @@ st.title("Time Prediction")
 #....CHANGED........................................................................................................................................
 
 
-if st.button("Predict Time"):#, disabled=not st.session_state["check_bd_clicked"]):
-    #if st.session_state["bd_output"] == "No BD predicted":
-    #    st.error("No breakdown predicted. Cannot proceed with time prediction.")
-    #else:
+if st.button(("Predict Time"), disabled=not st.session_state["check_bd_clicked"]):
+    if st.session_state["bd_output"] == "No BD predicted":
+        st.error("No breakdown predicted. Cannot proceed with time prediction.")
+    else:
         with st.spinner("Training the model and making predictions..."):
-            train_model(training_file_path)
+            #train_model(training_file_path)
             result = predict_time(test_file_path)  # Predict time using predefined test data
         st.write(f"Predicted Time to Breakdown: {result}")
         st.success("Prediction complete!")
@@ -728,7 +728,7 @@ st.title("Anamoly Detector")
 # Inside Streamlit UI
 if st.button("Check abnormality in sensors"):
     with st.spinner("🔍 Checking for abnormality..."):
-        train_lstm_autoencoder_model(training_file_path, model_folder_path)
+        #train_lstm_autoencoder_model(training_file_path, model_folder_path)
         result = predict_lstm_autoencoder(test_file_path, model_folder_path)
         st.session_state["Anamoly_output"] = result
 
