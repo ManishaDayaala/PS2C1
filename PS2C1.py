@@ -21,7 +21,7 @@ if "bd_output" not in st.session_state:
 
 # Set a random seed for reproducibility
 def set_random_seed(seed_value=42):
-    np.random.seed(seed_value)s
+    np.random.seed(seed_value)
     random.seed(seed_value)
     tf.random.set_seed(seed_value)
 
